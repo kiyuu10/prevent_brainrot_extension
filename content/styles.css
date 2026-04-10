@@ -1,0 +1,241 @@
+/* ── Reset scope isolation ─────────────────────────────────────────────────── */
+#__mindful-banner,
+#__mindful-overlay,
+#__mindful-overlay * {
+  all: initial;
+  box-sizing: border-box;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   BANNER  (warn1 – light)
+   ════════════════════════════════════════════════════════════════════════════ */
+#__mindful-banner {
+  position: fixed;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2147483647;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border: 1px solid rgba(99, 179, 237, 0.3);
+  border-radius: 14px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05);
+  min-width: 380px;
+  max-width: 520px;
+  transition: top 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  backdrop-filter: blur(12px);
+}
+
+#__mindful-banner.__mindful-visible {
+  top: 24px;
+}
+
+#__mindful-banner .__mindful-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 6px rgba(99,179,237,0.5));
+}
+
+#__mindful-banner .__mindful-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+#__mindful-banner .__mindful-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #63b3ed;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+#__mindful-banner .__mindful-body {
+  font-size: 14px;
+  color: #e2e8f0;
+  line-height: 1.4;
+}
+
+#__mindful-banner .__mindful-body strong {
+  color: #90cdf4;
+  font-weight: 600;
+}
+
+#__mindful-banner .__mindful-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+#__mindful-banner .__mindful-btn {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+  white-space: nowrap;
+}
+
+#__mindful-banner .__mindful-btn:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+#__mindful-banner .__mindful-btn-snooze {
+  background: rgba(99,179,237,0.15);
+  color: #90cdf4;
+  border: 1px solid rgba(99,179,237,0.3);
+}
+
+#__mindful-banner .__mindful-btn-dismiss {
+  background: linear-gradient(135deg, #4299e1, #3182ce);
+  color: #fff;
+}
+
+#__mindful-banner .__mindful-close {
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.4);
+  font-size: 16px;
+  padding: 4px;
+  flex-shrink: 0;
+  transition: color 0.15s;
+  line-height: 1;
+}
+
+#__mindful-banner .__mindful-close:hover {
+  color: rgba(255,255,255,0.8);
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   OVERLAY  (warn2 / remind – medium/strong)
+   ════════════════════════════════════════════════════════════════════════════ */
+#__mindful-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483646;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+#__mindful-overlay.__mindful-visible {
+  opacity: 1;
+}
+
+#__mindful-overlay.__mindful-overlay-medium {
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+}
+
+#__mindful-overlay.__mindful-overlay-strong {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+}
+
+#__mindful-overlay .__mindful-modal {
+  background: linear-gradient(145deg, #1a1a2e, #0f3460);
+  border: 1px solid rgba(99, 179, 237, 0.2);
+  border-radius: 24px;
+  padding: 48px 40px 36px;
+  max-width: 420px;
+  width: calc(100% - 48px);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
+  text-align: center;
+  transform: scale(0.85) translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+
+#__mindful-overlay.__mindful-visible .__mindful-modal {
+  transform: scale(1) translateY(0);
+}
+
+#__mindful-overlay .__mindful-modal-icon {
+  font-size: 56px;
+  margin-bottom: 16px;
+  filter: drop-shadow(0 0 12px rgba(99,179,237,0.4));
+}
+
+#__mindful-overlay .__mindful-modal-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #e2e8f0;
+  margin: 0 0 12px;
+  letter-spacing: -0.5px;
+}
+
+#__mindful-overlay .__mindful-modal-message {
+  font-size: 16px;
+  color: #a0aec0;
+  margin: 0 0 8px;
+  line-height: 1.5;
+}
+
+#__mindful-overlay .__mindful-modal-message strong {
+  color: #90cdf4;
+  font-weight: 600;
+}
+
+#__mindful-overlay .__mindful-modal-sub {
+  font-size: 14px;
+  color: #718096;
+  margin: 0 0 32px;
+  line-height: 1.6;
+}
+
+#__mindful-overlay .__mindful-modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#__mindful-overlay .__mindful-modal-btn {
+  cursor: pointer;
+  border: none;
+  border-radius: 12px;
+  padding: 13px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
+  width: 100%;
+}
+
+#__mindful-overlay .__mindful-modal-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+#__mindful-overlay .__mindful-modal-btn-primary {
+  background: linear-gradient(135deg, #4299e1, #3182ce);
+  color: #fff;
+}
+
+#__mindful-overlay .__mindful-modal-btn-secondary {
+  background: rgba(99,179,237,0.12);
+  color: #90cdf4;
+  border: 1px solid rgba(99,179,237,0.25);
+}
+
+#__mindful-overlay .__mindful-modal-btn-ghost {
+  background: transparent;
+  color: #4a5568;
+  font-size: 13px;
+  padding: 8px;
+}
+
+#__mindful-overlay .__mindful-modal-btn-ghost:hover {
+  color: #718096;
+  transform: none;
+  box-shadow: none;
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mindful Time</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <span class="logo-icon">🧠</span>
+        <div>
+          <h1 class="logo-title">Mindful Time</h1>
+          <p class="logo-sub">Stay aware. Stay in control.</p>
+        </div>
+      </div>
+      <a href="#" id="settings-link" class="settings-btn" title="Open Settings">⚙️</a>
+    </header>
+
+    <!-- Current Session Card -->
+    <div class="card session-card" id="session-card">
+      <div class="card-label">Current Session</div>
+      <div class="session-idle" id="session-idle">
+        <span class="idle-icon">😴</span>
+        <span>Not currently on a tracked site</span>
+      </div>
+      <div class="session-active hidden" id="session-active">
+        <div class="session-site" id="session-site">—</div>
+        <div class="session-timer" id="session-timer">0:00</div>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar" id="session-progress"></div>
+          <div class="progress-labels">
+            <span>0</span><span>5 min</span><span>10 min</span>
+          </div>
+        </div>
+        <div class="session-status" id="session-status">Tracking active</div>
+      </div>
+    </div>
+
+    <!-- Today's Stats -->
+    <div class="card">
+      <div class="card-label">Today's Usage</div>
+      <div id="stats-list" class="stats-list">
+        <div class="empty-state">No activity recorded today 🎉</div>
+      </div>
+    </div>
+
+    <!-- Site Toggles -->
+    <div class="card">
+      <div class="card-label">Tracking</div>
+      <div id="toggle-list" class="toggle-list">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+    <footer class="footer">
+      <a href="#" id="options-link">All settings</a>
+      <span>·</span>
+      <a href="#" id="reset-link">Reset today</a>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

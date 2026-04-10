@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mindful Time – Settings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="options.css" />
+</head>
+
+<body>
+  <div class="page">
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <div class="sidebar-logo">
+        <span class="logo-icon">🧠</span>
+        <div>
+          <div class="logo-title">Mindful Time</div>
+          <div class="logo-sub">Settings</div>
+        </div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#timers" class="nav-link active" data-section="timers">⏱️ Timers</a></li>
+        <li><a href="#warnings" class="nav-link" data-section="warnings">🔔 Warnings</a></li>
+        <li><a href="#sites" class="nav-link" data-section="sites">🌐 Tracked Sites</a></li>
+        <li><a href="#data" class="nav-link" data-section="data">📊 Data</a></li>
+      </ul>
+    </nav>
+
+    <!-- Main content -->
+    <main class="main">
+
+      <!-- Save banner -->
+      <div class="save-banner hidden" id="save-banner">
+        <span>✅ Settings saved!</span>
+      </div>
+
+      <!-- Section: Timers -->
+      <section id="section-timers" class="section active">
+        <div class="section-header">
+          <h2 class="section-title">⏱️ Warning Timers</h2>
+          <p class="section-desc">Configure when warnings appear during a session on a tracked site.</p>
+        </div>
+
+        <div class="card">
+          <div class="field-group">
+            <label class="field-label" for="threshold1">
+              First warning
+              <span class="field-hint">Light banner shown at this time</span>
+            </label>
+            <div class="input-row">
+              <input type="number" id="threshold1" class="num-input" min="1" max="120" value="5" />
+              <span class="unit">minutes</span>
+            </div>
+            <div class="slider-wrap">
+              <input type="range" id="threshold1-slider" min="1" max="60" value="5" class="slider" />
+              <div class="slider-labels"><span>1 min</span><span>30 min</span><span>60 min</span></div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="field-group">
+            <label class="field-label" for="threshold2">
+              Second warning
+              <span class="field-hint">Overlay shown at this time</span>
+            </label>
+            <div class="input-row">
+              <input type="number" id="threshold2" class="num-input" min="2" max="180" value="10" />
+              <span class="unit">minutes</span>
+            </div>
+            <div class="slider-wrap">
+              <input type="range" id="threshold2-slider" min="2" max="120" value="10" class="slider" />
+              <div class="slider-labels"><span>2 min</span><span>60 min</span><span>120 min</span></div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="field-group">
+            <label class="field-label" for="remind-interval">
+              Repeat reminder interval
+              <span class="field-hint">After second warning, remind again every X minutes</span>
+            </label>
+            <div class="input-row">
+              <input type="number" id="remind-interval" class="num-input" min="1" max="60" value="5" />
+              <span class="unit">minutes</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="preview-box">
+          <div class="preview-label">Timeline preview</div>
+          <div class="timeline" id="timeline">
+            <div class="tl-track">
+              <div class="tl-marker tl-start" style="left:0%"><span>0</span></div>
+              <div class="tl-marker tl-warn1" id="tl-warn1" style="left:33%"><span id="tl-warn1-label">5m</span></div>
+              <div class="tl-marker tl-warn2" id="tl-warn2" style="left:66%"><span id="tl-warn2-label">10m</span></div>
+              <div class="tl-fill" id="tl-fill1" style="left:0%; width:33%"></div>
+              <div class="tl-fill tl-fill-warn" id="tl-fill2" style="left:33%; width:33%"></div>
+            </div>
+            <div class="tl-labels">
+              <span class="tl-tag tl-tag-safe">Safe zone</span>
+              <span class="tl-tag tl-tag-caution">Caution</span>
+              <span class="tl-tag tl-tag-danger">Danger zone</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Warnings -->
+      <section id="section-warnings" class="section">
+        <div class="section-header">
+          <h2 class="section-title">🔔 Warning Style</h2>
+          <p class="section-desc">Choose how intrusive the warnings should feel. All styles retain full access to the
+            site.</p>
+        </div>
+
+        <div class="card">
+          <div class="intensity-options" id="intensity-options" name="defalts">
+
+            <label class="intensity-card" data-value="light">
+              <input type="radio" name="intensity" value="light" class="sr-only" />
+              <div class="intensity-preview intensity-light">
+                <div class="mini-banner">
+                  <span>🧠</span>
+                  <span class="mini-text">Heads up! You've been here for 5 mins…</span>
+                  <button class="mini-btn">Got it</button>
+                </div>
+              </div>
+              <div class="intensity-info">
+                <div class="intensity-name">Light</div>
+                <div class="intensity-desc">Small banner at the top. Auto-hides after 15s. Least intrusive.</div>
+              </div>
+              <span class="intensity-check">✓</span>
+            </label>
+
+            <label class="intensity-card" data-value="medium">
+              <input type="radio" name="intensity" value="medium" class="sr-only" />
+              <div class="intensity-preview intensity-medium">
+                <div class="mini-overlay-wrap">
+                  <div class="mini-overlay-bg"></div>
+                  <div class="mini-modal">
+                    <div>⏱️</div>
+                    <div class="mini-modal-title">Time Check</div>
+                    <div class="mini-modal-sub">You've been here for 10 mins.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="intensity-info">
+                <div class="intensity-name">Medium</div>
+                <div class="intensity-desc">Center modal with dim background. Click outside to dismiss.</div>
+              </div>
+              <span class="intensity-check">✓</span>
+            </label>
+
+            <label class="intensity-card" data-value="strong">
+              <input type="radio" name="intensity" value="strong" class="sr-only" />
+              <div class="intensity-preview intensity-strong">
+                <div class="mini-overlay-wrap">
+                  <div class="mini-overlay-bg mini-overlay-bg--strong"></div>
+                  <div class="mini-modal mini-modal--strong">
+                    <div>⏱️</div>
+                    <div class="mini-modal-title">Time Check</div>
+                    <div class="mini-modal-sub">Are you sure you want to continue?</div>
+                  </div>
+                </div>
+              </div>
+              <div class="intensity-info">
+                <div class="intensity-name">Strong</div>
+                <div class="intensity-desc">Full-screen dark overlay. Must actively click "Continue" to dismiss.</div>
+              </div>
+              <span class="intensity-check">✓</span>
+            </label>
+          </div>
+
+          <!-- manual intensity -->
+          <label class="intensity-card-manual" data-value="manual">
+            <div class="intensity-info-manual">
+              <div class="intensity-name">Manual</div>
+              <div class="intensity-desc">Write your own message to be displayed when the timer expires.</div>
+              <input type="text" id="manual-message" class="text-input" placeholder="Write your message here" />
+            </div>
+            <button class="btn btn-primary" id="add-custom-message">Add custom message</button>
+          </label>
+        </div>
+  </div>
+  </section>
+
+  <!-- Section: Tracked Sites -->
+  <section id="section-sites" class="section">
+    <div class="section-header">
+      <h2 class="section-title">🌐 Tracked Sites</h2>
+      <p class="section-desc">Toggle which websites are monitored. You can add custom domains too.</p>
+    </div>
+
+    <div class="card">
+      <div id="sites-list" class="sites-list"></div>
+    </div>
+
+    <div class="card add-domain-card">
+      <div class="field-group">
+        <label class="field-label" for="new-domain">
+          Add custom domain
+          <span class="field-hint">E.g. twitch.tv or pinterest.com</span>
+        </label>
+        <div class="add-domain-row">
+          <input type="text" id="new-domain" class="text-input" placeholder="example.com" />
+          <input type="text" id="new-label" class="text-input" placeholder="Label (optional)" />
+          <button class="btn btn-primary" id="add-domain-btn">Add</button>
+        </div>
+        <div class="add-error hidden" id="add-error">Please enter a valid domain (e.g. twitch.tv)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Data -->
+  <section id="section-data" class="section">
+    <div class="section-header">
+      <h2 class="section-title">📊 Data Management</h2>
+      <p class="section-desc">View and manage your stored usage data.</p>
+    </div>
+
+    <div class="card">
+      <div class="field-group">
+        <div class="field-label">Usage history</div>
+        <div id="history-table-wrap">
+          <div class="loading-text">Loading…</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card danger-card">
+      <div class="danger-header">Danger Zone</div>
+      <div class="danger-row">
+        <div>
+          <div class="danger-label">Reset today's stats</div>
+          <div class="danger-sub">Clear only today's usage data</div>
+        </div>
+        <button class="btn btn-danger" id="reset-today-btn">Reset Today</button>
+      </div>
+      <div class="danger-row">
+        <div>
+          <div class="danger-label">Clear all history</div>
+          <div class="danger-sub">Permanently delete all tracked data</div>
+        </div>
+        <button class="btn btn-danger" id="clear-all-btn">Clear All</button>
+      </div>
+      <div class="danger-row">
+        <div>
+          <div class="danger-label">Reset to defaults</div>
+          <div class="danger-sub">Restore all settings to their original values</div>
+        </div>
+        <button class="btn btn-outline-danger" id="reset-defaults-btn">Reset Defaults</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Save button -->
+  <div class="save-footer">
+    <button class="btn btn-primary btn-save" id="save-btn">Save Settings</button>
+  </div>
+  </main>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+
+</html>
