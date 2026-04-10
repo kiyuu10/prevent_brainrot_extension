@@ -2,14 +2,14 @@
 "use strict";
 
 const SITE_ICONS = {
-  "facebook.com":  "📘",
-  "youtube.com":   "📺",
+  "facebook.com": "📘",
+  "youtube.com": "📺",
   "instagram.com": "📸",
-  "tiktok.com":    "🎵",
-  "twitter.com":   "🐦",
-  "x.com":         "✖️",
-  "threads.net":   "🧵",
-  "reddit.com":    "🤖",
+  "tiktok.com": "🎵",
+  "twitter.com": "🐦",
+  "x.com": "✖️",
+  "threads.net": "🧵",
+  "reddit.com": "🤖",
 };
 
 let currentSettings = null;
@@ -46,7 +46,7 @@ document.querySelectorAll(".nav-link").forEach((link) => {
 // ── Timer inputs + sliders ────────────────────────────────────────────────────
 function syncSliderToInput(sliderId, inputId) {
   const slider = document.getElementById(sliderId);
-  const input  = document.getElementById(inputId);
+  const input = document.getElementById(inputId);
 
   slider.addEventListener("input", () => {
     input.value = slider.value;
@@ -56,7 +56,7 @@ function syncSliderToInput(sliderId, inputId) {
   input.addEventListener("input", () => {
     const v = Math.max(parseInt(input.min), Math.min(parseInt(input.max), parseInt(input.value) || 1));
     slider.value = Math.min(parseInt(slider.max), v);
-    input.value  = v;
+    input.value = v;
     updateTimeline();
   });
 }
@@ -72,7 +72,7 @@ function updateTimeline() {
   document.getElementById("tl-warn1").style.left = pct1 + "%";
   document.getElementById("tl-warn2").style.left = pct2 + "%";
   document.getElementById("tl-fill1").style.width = pct1 + "%";
-  document.getElementById("tl-fill2").style.left  = pct1 + "%";
+  document.getElementById("tl-fill2").style.left = pct1 + "%";
   document.getElementById("tl-fill2").style.width = (pct2 - pct1) + "%";
 
   document.getElementById("tl-warn1-label").textContent = t1 + "m";
@@ -90,6 +90,16 @@ document.querySelectorAll(".intensity-card").forEach((card) => {
     const radio = card.querySelector("input[type=radio]");
     if (radio) radio.checked = true;
   });
+});
+
+// ── Manual message ────────────────────────────────────────────────────────────
+document.getElementById("add-custom-message").addEventListener("click", async () => {
+  const manualMessage = document.getElementById("manual-message").value;
+
+  currentSettings.manualMessage = manualMessage;
+
+  await saveSettings(currentSettings);
+  showBanner("✅ Settings saved!");
 });
 
 function setIntensity(value) {
@@ -112,10 +122,10 @@ function renderSitesList() {
   if (!currentSettings) return;
 
   list.innerHTML = currentSettings.trackedSites.map((site, i) => {
-    const icon    = SITE_ICONS[site.domain] || "🌐";
+    const icon = SITE_ICONS[site.domain] || "🌐";
     const checked = site.enabled ? "checked" : "";
-    const isBuiltin = ["facebook.com","youtube.com","instagram.com","tiktok.com",
-                        "twitter.com","x.com","threads.net","reddit.com"].includes(site.domain);
+    const isBuiltin = ["facebook.com", "youtube.com", "instagram.com", "tiktok.com",
+      "twitter.com", "x.com", "threads.net", "reddit.com"].includes(site.domain);
     return `
       <div class="site-row" data-index="${i}">
         <span class="site-icon">${icon}</span>
@@ -155,11 +165,11 @@ function renderSitesList() {
 // ── Add custom domain ─────────────────────────────────────────────────────────
 document.getElementById("add-domain-btn").addEventListener("click", () => {
   const domainInput = document.getElementById("new-domain");
-  const labelInput  = document.getElementById("new-label");
-  const errEl       = document.getElementById("add-error");
+  const labelInput = document.getElementById("new-label");
+  const errEl = document.getElementById("add-error");
 
   const domain = domainInput.value.trim().toLowerCase().replace(/^https?:\/\//, "").replace(/\/.*$/, "");
-  const label  = labelInput.value.trim() || capitalize(domain.split(".")[0]);
+  const label = labelInput.value.trim() || capitalize(domain.split(".")[0]);
 
   // Basic validation
   if (!domain || !domain.includes(".")) {
@@ -176,7 +186,7 @@ document.getElementById("add-domain-btn").addEventListener("click", () => {
   }
 
   domainInput.value = "";
-  labelInput.value  = "";
+  labelInput.value = "";
 });
 
 function capitalize(str) {
@@ -187,7 +197,7 @@ function capitalize(str) {
 async function loadHistory() {
   const wrap = document.getElementById("history-table-wrap");
   const data = await new Promise((r) => chrome.storage.local.get("dailyStats", r));
-  const all  = data.dailyStats || {};
+  const all = data.dailyStats || {};
   const keys = Object.keys(all).sort().reverse();
 
   if (keys.length === 0) {
@@ -244,7 +254,7 @@ document.getElementById("reset-today-btn").addEventListener("click", async () =>
   if (!confirm("Reset today's tracking stats?")) return;
   const todayKey = new Date().toISOString().slice(0, 10);
   const data = await new Promise((r) => chrome.storage.local.get("dailyStats", r));
-  const all  = data.dailyStats || {};
+  const all = data.dailyStats || {};
   delete all[todayKey];
   await chrome.storage.local.set({ dailyStats: all });
   showBanner("Today's stats cleared.");
@@ -276,8 +286,8 @@ document.getElementById("save-btn").addEventListener("click", async () => {
 
   currentSettings.warningThreshold1 = t1 * 60;
   currentSettings.warningThreshold2 = Math.max(t1 + 1, t2) * 60;
-  currentSettings.remindInterval    = ri * 60;
-  currentSettings.warningIntensity  = getIntensity();
+  currentSettings.remindInterval = ri * 60;
+  currentSettings.warningIntensity = getIntensity();
 
   await saveSettings(currentSettings);
   showBanner("✅ Settings saved!");
@@ -299,11 +309,11 @@ function populateForm() {
   const t2 = Math.round(currentSettings.warningThreshold2 / 60);
   const ri = Math.round(currentSettings.remindInterval / 60);
 
-  document.getElementById("threshold1").value        = t1;
+  document.getElementById("threshold1").value = t1;
   document.getElementById("threshold1-slider").value = t1;
-  document.getElementById("threshold2").value        = t2;
+  document.getElementById("threshold2").value = t2;
   document.getElementById("threshold2-slider").value = t2;
-  document.getElementById("remind-interval").value   = ri;
+  document.getElementById("remind-interval").value = ri;
 
   setIntensity(currentSettings.warningIntensity || "medium");
   updateTimeline();

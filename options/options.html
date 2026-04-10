@@ -181,90 +181,91 @@
           <!-- manual intensity -->
           <label class="intensity-card-manual" data-value="manual">
             <div class="intensity-info-manual">
-              <div class="intensity-name">Manual</div>
+              <div class="intensity-name">Manual message</div>
               <div class="intensity-desc">Write your own message to be displayed when the timer expires.</div>
-              <input type="text" id="manual-message" class="text-input" placeholder="Write your message here" />
+              <input type="text" id="manual-message" class="text-input-manual" placeholder="Write your message here" />
             </div>
             <button class="btn btn-primary" id="add-custom-message">Add custom message</button>
           </label>
+          <!--  end manual intensity-->
+
         </div>
-  </div>
-  </section>
+      </section>
 
-  <!-- Section: Tracked Sites -->
-  <section id="section-sites" class="section">
-    <div class="section-header">
-      <h2 class="section-title">🌐 Tracked Sites</h2>
-      <p class="section-desc">Toggle which websites are monitored. You can add custom domains too.</p>
-    </div>
-
-    <div class="card">
-      <div id="sites-list" class="sites-list"></div>
-    </div>
-
-    <div class="card add-domain-card">
-      <div class="field-group">
-        <label class="field-label" for="new-domain">
-          Add custom domain
-          <span class="field-hint">E.g. twitch.tv or pinterest.com</span>
-        </label>
-        <div class="add-domain-row">
-          <input type="text" id="new-domain" class="text-input" placeholder="example.com" />
-          <input type="text" id="new-label" class="text-input" placeholder="Label (optional)" />
-          <button class="btn btn-primary" id="add-domain-btn">Add</button>
+      <!-- Section: Tracked Sites -->
+      <section id="section-sites" class="section">
+        <div class="section-header">
+          <h2 class="section-title">🌐 Tracked Sites</h2>
+          <p class="section-desc">Toggle which websites are monitored. You can add custom domains too.</p>
         </div>
-        <div class="add-error hidden" id="add-error">Please enter a valid domain (e.g. twitch.tv)</div>
+
+        <div class="card">
+          <div id="sites-list" class="sites-list"></div>
+        </div>
+
+        <div class="card add-domain-card">
+          <div class="field-group">
+            <label class="field-label" for="new-domain">
+              Add custom domain
+              <span class="field-hint">E.g. twitch.tv or pinterest.com</span>
+            </label>
+            <div class="add-domain-row">
+              <input type="text" id="new-domain" class="text-input" placeholder="example.com" />
+              <input type="text" id="new-label" class="text-input" placeholder="Label (optional)" />
+              <button class="btn btn-primary" id="add-domain-btn">Add</button>
+            </div>
+            <div class="add-error hidden" id="add-error">Please enter a valid domain (e.g. twitch.tv)</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Data -->
+      <section id="section-data" class="section">
+        <div class="section-header">
+          <h2 class="section-title">📊 Data Management</h2>
+          <p class="section-desc">View and manage your stored usage data.</p>
+        </div>
+
+        <div class="card">
+          <div class="field-group">
+            <div class="field-label">Usage history</div>
+            <div id="history-table-wrap">
+              <div class="loading-text">Loading…</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card danger-card">
+          <div class="danger-header">Danger Zone</div>
+          <div class="danger-row">
+            <div>
+              <div class="danger-label">Reset today's stats</div>
+              <div class="danger-sub">Clear only today's usage data</div>
+            </div>
+            <button class="btn btn-danger" id="reset-today-btn">Reset Today</button>
+          </div>
+          <div class="danger-row">
+            <div>
+              <div class="danger-label">Clear all history</div>
+              <div class="danger-sub">Permanently delete all tracked data</div>
+            </div>
+            <button class="btn btn-danger" id="clear-all-btn">Clear All</button>
+          </div>
+          <div class="danger-row">
+            <div>
+              <div class="danger-label">Reset to defaults</div>
+              <div class="danger-sub">Restore all settings to their original values</div>
+            </div>
+            <button class="btn btn-outline-danger" id="reset-defaults-btn">Reset Defaults</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Save button -->
+      <div class="save-footer">
+        <button class="btn btn-primary btn-save" id="save-btn">Save Settings</button>
       </div>
-    </div>
-  </section>
-
-  <!-- Section: Data -->
-  <section id="section-data" class="section">
-    <div class="section-header">
-      <h2 class="section-title">📊 Data Management</h2>
-      <p class="section-desc">View and manage your stored usage data.</p>
-    </div>
-
-    <div class="card">
-      <div class="field-group">
-        <div class="field-label">Usage history</div>
-        <div id="history-table-wrap">
-          <div class="loading-text">Loading…</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card danger-card">
-      <div class="danger-header">Danger Zone</div>
-      <div class="danger-row">
-        <div>
-          <div class="danger-label">Reset today's stats</div>
-          <div class="danger-sub">Clear only today's usage data</div>
-        </div>
-        <button class="btn btn-danger" id="reset-today-btn">Reset Today</button>
-      </div>
-      <div class="danger-row">
-        <div>
-          <div class="danger-label">Clear all history</div>
-          <div class="danger-sub">Permanently delete all tracked data</div>
-        </div>
-        <button class="btn btn-danger" id="clear-all-btn">Clear All</button>
-      </div>
-      <div class="danger-row">
-        <div>
-          <div class="danger-label">Reset to defaults</div>
-          <div class="danger-sub">Restore all settings to their original values</div>
-        </div>
-        <button class="btn btn-outline-danger" id="reset-defaults-btn">Reset Defaults</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Save button -->
-  <div class="save-footer">
-    <button class="btn btn-primary btn-save" id="save-btn">Save Settings</button>
-  </div>
-  </main>
+    </main>
   </div>
 
   <script src="options.js"></script>
