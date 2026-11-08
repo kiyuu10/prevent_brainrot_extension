@@ -14,7 +14,7 @@ how to install it to browser
 
 ### -----------
 
-- choose the folder that extract from the zip file downloaded 
+- choose the folder that extracted from the zip file
 
 ![install extension 1](./assets/image_installs/load_extension_1.png)
 
